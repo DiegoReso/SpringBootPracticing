@@ -1,8 +1,10 @@
 package dev.reso.practicing.model;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,19 +13,17 @@ import lombok.*;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "tb_clients")
-public class Client {
+@Table(name = "tb_missions")
+public class Mission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private String email;
-    private Integer age;
+    private Character difficulty;
 
-    @ManyToOne
-    @JoinColumn(name = "missions_id")
-    private Mission missions;
+    @OneToMany(mappedBy = "missions")
+    private List<Client> clients;
+
 
 }
