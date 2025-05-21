@@ -19,6 +19,8 @@ public class Client {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
     private Integer age;
 
