@@ -1,0 +1,1 @@
+ALTER TABLE tb_clients ADD COLUMN rank VARCHAR(255);
