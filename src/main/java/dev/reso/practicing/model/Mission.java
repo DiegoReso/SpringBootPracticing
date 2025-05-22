@@ -1,6 +1,7 @@
 package dev.reso.practicing.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Mission {
     private Character difficulty;
 
     @OneToMany(mappedBy = "missions")
+    @JsonIgnore
     private List<Client> clients;
 
 

@@ -1,5 +1,6 @@
 package dev.reso.practicing.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
