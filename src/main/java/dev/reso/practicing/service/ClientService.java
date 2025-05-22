@@ -15,15 +15,20 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Client> getAll(){
         List<Client> list = clientRepository.findAll();
         return list;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Client getById(Long id){
         Optional<Client> client = clientRepository.findById(id);
         return client.orElse(null);
+    }
+
+
+    public Client insert(Client obj){
+       return clientRepository.save(obj);
     }
 }

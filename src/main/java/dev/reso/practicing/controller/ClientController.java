@@ -5,10 +5,7 @@ import dev.reso.practicing.model.Client;
 import dev.reso.practicing.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +28,9 @@ public class ClientController {
         return ResponseEntity.ok().body(client);
     }
 
+    @PostMapping
+    public Client insertClient(@RequestBody Client client){
+       return clientService.insert(client);
+    }
 
 }
