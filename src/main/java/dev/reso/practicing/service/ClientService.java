@@ -36,4 +36,13 @@ public class ClientService {
     public void delete(Long id){
         clientRepository.deleteById(id);
     }
+
+    @Transactional
+    public Client update(Client client, Long id){
+        if(clientRepository.existsById(id)){
+            client.setId(id);
+            return clientRepository.save(client);
+        }
+        return null;
+    }
 }
