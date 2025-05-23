@@ -27,8 +27,13 @@ public class ClientService {
         return client.orElse(null);
     }
 
-
+    @Transactional
     public Client insert(Client obj){
        return clientRepository.save(obj);
+    }
+
+    @Transactional
+    public void delete(Long id){
+        clientRepository.deleteById(id);
     }
 }
