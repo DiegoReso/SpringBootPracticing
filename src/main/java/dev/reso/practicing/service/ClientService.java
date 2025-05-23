@@ -1,5 +1,7 @@
 package dev.reso.practicing.service;
 
+import dev.reso.practicing.dto.ClientDTO;
+import dev.reso.practicing.dto.ClientMapper;
 import dev.reso.practicing.model.Client;
 import dev.reso.practicing.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +17,26 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private ClientMapper clientMapper;
+
     @Transactional(readOnly = true)
-    public List<Client> getAll(){
+    public List<ClientDTO> getAll(){
         List<Client> list = clientRepository.findAll();
-        return list;
+        return list.stream().map(clientMapper::map).toList();
     }
 
     @Transactional(readOnly = true)
-    public Client getById(Long id){
+    public ClientDTO getById(Long id){
         Optional<Client> client = clientRepository.findById(id);
-        return client.orElse(null);
+        return client.map(clientMapper::map).orElse(null);
     }
 
     @Transactional
-    public Client insert(Client obj){
-       return clientRepository.save(obj);
+    public ClientDTO insert(ClientDTO obj){
+        Client client = clientMapper.map(obj);
+       client = clientRepository.save(client);
+       return clientMapper.map(client);
     }
 
     @Transactional
@@ -38,10 +45,13 @@ public class ClientService {
     }
 
     @Transactional
-    public Client update(Client client, Long id){
-        if(clientRepository.existsById(id)){
+    public ClientDTO update(ClientDTO clientDTO, Long id){
+        Optional<Client> clientExists = clientRepository.findById(id);
+        if(clientExists.isPresent()){
+            Client client = clientMapper.map(clientDTO);
             client.setId(id);
-            return clientRepository.save(client);
+            client = clientRepository.save(client);
+            return clientMapper.map(client);
         }
         return null;
     }

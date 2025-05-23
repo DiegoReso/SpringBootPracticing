@@ -1,6 +1,6 @@
 package dev.reso.practicing.controller;
 
-
+import dev.reso.practicing.dto.ClientDTO;
 import dev.reso.practicing.model.Client;
 import dev.reso.practicing.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,19 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping
-    public ResponseEntity <List<Client>> getAll(){
-        List<Client> list = clientService.getAll();
+    public ResponseEntity <List<ClientDTO>> getAll(){
+        List<ClientDTO> list = clientService.getAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Client> getById(@PathVariable Long id){
-        Client client = clientService.getById(id);
+    public ResponseEntity<ClientDTO> getById(@PathVariable Long id){
+        ClientDTO client = clientService.getById(id);
         return ResponseEntity.ok().body(client);
     }
 
     @PostMapping
-    public Client insertClient(@RequestBody Client client){
+    public ClientDTO insertClient(@RequestBody ClientDTO client){
        return clientService.insert(client);
     }
 
@@ -39,7 +39,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public Client updateClient(@RequestBody Client client, @PathVariable Long id){
+    public ClientDTO updateClient(@RequestBody ClientDTO client, @PathVariable Long id){
         return clientService.update(client,id);
     }
 }

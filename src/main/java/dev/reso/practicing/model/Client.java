@@ -28,4 +28,5 @@ public class Client {
     @JoinColumn(name = "missions_id")
     private Mission missions;
 
+    private String rank;
 }
