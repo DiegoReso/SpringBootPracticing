@@ -29,8 +29,9 @@ public class ClientController {
     }
 
     @PostMapping
-    public ClientDTO insertClient(@RequestBody ClientDTO client){
-       return clientService.insert(client);
+    public ResponseEntity<ClientDTO>  insertClient(@RequestBody ClientDTO client){
+       ClientDTO clientDTO =  clientService.insert(client);
+       return ResponseEntity.ok().body(clientDTO);
     }
 
     @DeleteMapping("/{id}")
