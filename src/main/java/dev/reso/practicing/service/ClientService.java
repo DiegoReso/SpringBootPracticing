@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +27,16 @@ public class ClientService {
     }
 
     @Transactional(readOnly = true)
-    public Client getById(Long id){
+    public ClientDTO getById(Long id){
         Optional<Client> client = clientRepository.findById(id);
-        return client.orElse(null);
+        return client.map(clientMapper::map).orElse(null);
     }
 
     @Transactional
-    public Client insert(Client obj){
-       return clientRepository.save(obj);
+    public ClientDTO insert(ClientDTO obj){
+        Client client = clientMapper.map(obj);
+       client = clientRepository.save(client);
+       return clientMapper.map(client);
     }
 
     @Transactional
@@ -44,10 +45,13 @@ public class ClientService {
     }
 
     @Transactional
-    public Client update(Client client, Long id){
-        if(clientRepository.existsById(id)){
+    public ClientDTO update(ClientDTO clientDTO, Long id){
+        Optional<Client> clientExists = clientRepository.findById(id);
+        if(clientExists.isPresent()){
+            Client client = clientMapper.map(clientDTO);
             client.setId(id);
-            return clientRepository.save(client);
+            client = clientRepository.save(client);
+            return clientMapper.map(client);
         }
         return null;
     }
