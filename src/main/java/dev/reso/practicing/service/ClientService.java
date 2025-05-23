@@ -1,11 +1,14 @@
 package dev.reso.practicing.service;
 
+import dev.reso.practicing.dto.ClientDTO;
+import dev.reso.practicing.dto.ClientMapper;
 import dev.reso.practicing.model.Client;
 import dev.reso.practicing.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +18,13 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private ClientMapper clientMapper;
+
     @Transactional(readOnly = true)
-    public List<Client> getAll(){
+    public List<ClientDTO> getAll(){
         List<Client> list = clientRepository.findAll();
-        return list;
+        return list.stream().map(clientMapper::map).toList();
     }
 
     @Transactional(readOnly = true)

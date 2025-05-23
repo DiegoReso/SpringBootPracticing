@@ -1,6 +1,7 @@
 package dev.reso.practicing.controller;
 
 
+import dev.reso.practicing.dto.ClientDTO;
 import dev.reso.practicing.model.Client;
 import dev.reso.practicing.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping
-    public ResponseEntity <List<Client>> getAll(){
-        List<Client> list = clientService.getAll();
+    public ResponseEntity <List<ClientDTO>> getAll(){
+        List<ClientDTO> list = clientService.getAll();
         return ResponseEntity.ok().body(list);
     }
 
