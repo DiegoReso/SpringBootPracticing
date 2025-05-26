@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MissionService {
@@ -29,14 +30,14 @@ public class MissionService {
 
     @Transactional(readOnly = true)
     public MissionDTO getById(Long id) {
-         return missionMapper.map(missionRepository.findById(id).orElse(null));
+        Optional<Mission> mission = missionRepository.findById(id);
+        return mission.map(missionMapper::map).orElse(null);
     }
 
     @Transactional
     public MissionDTO insert(MissionDTO missionDTO){
         Mission mission = missionMapper.map(missionDTO);
         mission = missionRepository.save(mission);
-
         return missionMapper.map(mission);
     }
 
