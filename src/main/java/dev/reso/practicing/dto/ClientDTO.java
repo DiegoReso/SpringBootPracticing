@@ -1,8 +1,13 @@
 package dev.reso.practicing.dto;
 
 
+
+import dev.reso.practicing.model.Client;
+
 import dev.reso.practicing.model.Mission;
 import lombok.*;
+
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -18,4 +23,6 @@ public class ClientDTO {
     private Integer age;
     private Mission missions;
     private String rank;
+
+
 }

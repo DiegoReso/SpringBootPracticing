@@ -2,9 +2,11 @@ package dev.reso.practicing.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
-@ToString
+@ToString(exclude = "clients")
 
 @Entity
 @Table(name = "tb_missions")
@@ -26,7 +28,6 @@ public class Mission {
 
     @OneToMany(mappedBy = "missions")
     @JsonIgnore
-    private List<Client> clients;
-
+    private List<Client> clients = new ArrayList<>();
 
 }

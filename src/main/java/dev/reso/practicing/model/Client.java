@@ -1,5 +1,7 @@
 package dev.reso.practicing.model;
 
+import dev.reso.practicing.dto.ClientDTO;
+import dev.reso.practicing.dto.MissionDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,4 +32,5 @@ public class Client {
     private Mission missions;
 
     private String rank;
+
 }
