@@ -60,7 +60,5 @@ public class ClientController {
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
         }
-
-
     }
 }

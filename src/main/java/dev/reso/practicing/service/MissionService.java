@@ -39,4 +39,12 @@ public class MissionService {
 
         return missionMapper.map(mission);
     }
+
+    @Transactional
+    public MissionDTO update(MissionDTO missionDTO, Long id){
+        Mission mission = missionMapper.map(missionDTO);
+        mission.setId(id);
+        mission = missionRepository.save(mission);
+        return missionMapper.map(mission);
+    }
 }

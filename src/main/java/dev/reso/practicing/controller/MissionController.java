@@ -1,6 +1,5 @@
 package dev.reso.practicing.controller;
 
-
 import dev.reso.practicing.dto.MissionDTO;
 import dev.reso.practicing.service.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +34,18 @@ public class MissionController {
         MissionDTO missionDTO = missionService.insert(mission);
         return ResponseEntity.status(HttpStatus.CREATED).body(missionDTO);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MissionDTO> update(@RequestBody MissionDTO mission, @PathVariable Long id){
+        MissionDTO missionDTO = missionService.update(mission, id);
+        return ResponseEntity.ok(missionDTO);
+    }
 }
+
+
+
+
+
+
+
+

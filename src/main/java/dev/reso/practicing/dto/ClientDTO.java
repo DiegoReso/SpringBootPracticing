@@ -31,6 +31,5 @@ public class ClientDTO {
         setEmail(client.getEmail());
         setMissions(client.getMissions());
         setRank(client.getRank());
-
     }
 }

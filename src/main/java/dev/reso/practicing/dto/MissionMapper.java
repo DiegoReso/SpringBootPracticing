@@ -21,8 +21,7 @@ public class MissionMapper {
         missionDTO.setId(mission.getId());
         missionDTO.setName(mission.getName());
         missionDTO.setClients(mission.getClients().stream().map(ClientDTO::new).toList());
-
-        mission.setDifficulty(mission.getDifficulty());
+        missionDTO.setDifficulty(mission.getDifficulty());
         return missionDTO;
     }
 }
