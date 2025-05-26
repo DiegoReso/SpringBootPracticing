@@ -26,6 +26,10 @@ public class MissionService {
         return missionRepository.findAll().stream().map(missionMapper::map).toList();
     }
 
+    @Transactional
+    public MissionDTO getById(Long id) {
+         return missionMapper.map(missionRepository.findById(id).orElse(null));
+    }
 
 
 }

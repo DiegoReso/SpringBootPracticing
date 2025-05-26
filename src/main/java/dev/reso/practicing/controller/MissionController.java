@@ -2,14 +2,10 @@ package dev.reso.practicing.controller;
 
 
 import dev.reso.practicing.dto.MissionDTO;
-import dev.reso.practicing.repository.MissionRepository;
 import dev.reso.practicing.service.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +18,14 @@ public class MissionController {
     private MissionService missionService;
 
     @GetMapping
-    public ResponseEntity< List< MissionDTO>> getAll(){
+    public ResponseEntity<List< MissionDTO>> getAll(){
         List<MissionDTO> missionDTO = missionService.getAll();
+        return ResponseEntity.ok(missionDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MissionDTO> getById(@PathVariable Long id){
+        MissionDTO missionDTO = missionService.getById(id);
         return ResponseEntity.ok(missionDTO);
     }
 }
