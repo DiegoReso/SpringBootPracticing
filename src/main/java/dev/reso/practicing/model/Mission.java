@@ -3,6 +3,8 @@ package dev.reso.practicing.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import dev.reso.practicing.dto.ClientDTO;
+import dev.reso.practicing.dto.MissionDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,8 +13,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode
 @ToString(exclude = "clients")
 
@@ -30,4 +31,12 @@ public class Mission {
     @JsonIgnore
     private List<Client> clients = new ArrayList<>();
 
+    public Mission(MissionDTO missionDTO){
+        setId(missionDTO.getId());
+        setName(missionDTO.getName());
+        setDifficulty(missionDTO.getDifficulty());
+        for(ClientDTO clientDTO : missionDTO.getClients()){
+            clients.add(new Client(clientDTO));
+        }
+    }
 }

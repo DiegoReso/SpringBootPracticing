@@ -18,12 +18,13 @@ public class MissionDTO {
     private Long id;
     private String name;
     private Character difficulty;
-    private List<Client> clients = new ArrayList<>();
+    private List<ClientDTO> clients = new ArrayList<>();
 
     public MissionDTO(Mission missions) {
         setId(missions.getId());
         setName(missions.getName());
         setDifficulty(missions.getDifficulty());
-        setClients(missions.getClients());
+        clients = missions.getClients().stream().map(ClientDTO::new).toList();
     }
+
 }

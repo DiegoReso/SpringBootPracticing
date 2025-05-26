@@ -5,6 +5,8 @@ import dev.reso.practicing.dto.MissionDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +34,13 @@ public class Client {
     private Mission missions;
 
     private String rank;
+
+    public Client(ClientDTO clientDTO){
+        setId(clientDTO.getId());
+        setName(clientDTO.getName());
+        setEmail(clientDTO.getEmail());
+        setAge(clientDTO.getAge());
+        setMissions(clientDTO.getMissions());
+    }
 
 }

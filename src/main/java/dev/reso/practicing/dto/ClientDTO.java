@@ -25,4 +25,13 @@ public class ClientDTO {
     private String rank;
 
 
+    public ClientDTO(Client client) {
+        setId(client.getId());
+        setName(client.getName());
+        setAge(client.getAge());
+        setEmail(client.getEmail());
+        setMissions(client.getMissions());
+        setRank(client.getRank());
+
+    }
 }
