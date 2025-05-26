@@ -43,10 +43,16 @@ public class MissionService {
 
     @Transactional
     public MissionDTO update(MissionDTO missionDTO, Long id){
-        Mission mission = missionMapper.map(missionDTO);
-        mission.setId(id);
-        mission = missionRepository.save(mission);
-        return missionMapper.map(mission);
+        Optional<Mission> missionExists = missionRepository.findById(id);
+
+        if(missionExists.isPresent()){
+            Mission mission = missionMapper.map(missionDTO);
+            mission.setId(id);
+            mission = missionRepository.save(mission);
+            return missionMapper.map(mission);
+        }
+
+        return null;
     }
 
     @Transactional
