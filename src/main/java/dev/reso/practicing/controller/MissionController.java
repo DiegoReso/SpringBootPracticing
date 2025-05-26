@@ -18,5 +18,12 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class MissionController {
 
+    @Autowired
+    private MissionService missionService;
 
+    @GetMapping
+    public ResponseEntity< List< MissionDTO>> getAll(){
+        List<MissionDTO> missionDTO = missionService.getAll();
+        return ResponseEntity.ok(missionDTO);
+    }
 }
