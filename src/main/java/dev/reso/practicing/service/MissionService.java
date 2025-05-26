@@ -47,4 +47,9 @@ public class MissionService {
         mission = missionRepository.save(mission);
         return missionMapper.map(mission);
     }
+
+    @Transactional
+    public void delete(Long id){
+        missionRepository.deleteById(id);
+    }
 }

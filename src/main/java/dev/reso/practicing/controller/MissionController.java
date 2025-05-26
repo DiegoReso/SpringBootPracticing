@@ -40,6 +40,12 @@ public class MissionController {
         MissionDTO missionDTO = missionService.update(mission, id);
         return ResponseEntity.ok(missionDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        missionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
