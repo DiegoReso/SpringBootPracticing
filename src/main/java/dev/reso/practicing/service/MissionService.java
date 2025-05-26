@@ -6,6 +6,7 @@ import dev.reso.practicing.dto.MissionDTO;
 import dev.reso.practicing.dto.MissionMapper;
 import dev.reso.practicing.model.Mission;
 import dev.reso.practicing.repository.MissionRepository;
+import dev.reso.practicing.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ public class MissionService {
     @Transactional(readOnly = true)
     public MissionDTO getById(Long id) {
         Optional<Mission> mission = missionRepository.findById(id);
-        return mission.map(missionMapper::map).orElse(null);
+        return mission.map(missionMapper::map).orElseThrow(() ->  new ResourceNotFoundException("Not found id -> " + id));
     }
 
     @Transactional
