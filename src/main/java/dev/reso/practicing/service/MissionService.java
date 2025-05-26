@@ -53,11 +53,15 @@ public class MissionService {
             return missionMapper.map(mission);
         }
 
-        return null;
+        throw new ResourceNotFoundException("Not found id -> " + id);
     }
 
     @Transactional
     public void delete(Long id){
-        missionRepository.deleteById(id);
+        if(missionRepository.findById(id).isPresent()){
+            missionRepository.deleteById(id);
+        }else{
+            throw new ResourceNotFoundException("Not Found id -> " + id);
+        }
     }
 }
