@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 
 @Entity
 @Table(name = "tb_missions")

@@ -9,6 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString(exclude = "missions")
 
 @Entity
 @Table(name = "tb_clients")
