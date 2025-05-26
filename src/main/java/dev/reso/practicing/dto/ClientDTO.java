@@ -7,7 +7,6 @@ import dev.reso.practicing.model.Client;
 import dev.reso.practicing.model.Mission;
 import lombok.*;
 
-import java.util.List;
 
 
 @NoArgsConstructor

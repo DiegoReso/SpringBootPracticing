@@ -1,7 +1,6 @@
 package dev.reso.practicing.dto;
 
 
-import dev.reso.practicing.model.Client;
 import dev.reso.practicing.model.Mission;
 import lombok.*;
 
